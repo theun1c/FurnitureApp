@@ -20,6 +20,9 @@ public partial class MainWindowViewModel : ViewModelBase
 
     /* этот обсервабл коллекшн нужен для комбо бокса списков. важно чтобы список работал с ЮАЙ */
     public ObservableCollection<string> ProductTypes { get; } = new();
+
+    /* для сортировки по возрастанию убыванию цены */
+    public ObservableCollection<string> SortOption { get; } = new();
     
     /*нужно для всего списка, чтобы восстанавливаться после поиска.
      Лист, потому что не привязан к ЮАЙ, а просто хранит данные*/
@@ -58,6 +61,21 @@ public partial class MainWindowViewModel : ViewModelBase
         }
     }
     
+    private string _selectedSortOption = string.Empty;
+
+    public string SelectedSortOption
+    {
+        get => _selectedSortOption;
+        set
+        {
+            if (_selectedSortOption != value)
+            {
+                _selectedSortOption = value;
+                OnPropertyChanged();
+                UpdateProductList();
+            }
+        }
+    }
 
     /*/* после изменения  Text="{Binding SearchText}"/> вызывается поиск#1#
     private void ApplySearch()
@@ -101,6 +119,14 @@ public partial class MainWindowViewModel : ViewModelBase
             filteredProducts = filteredProducts
                 .Where(p => p.ProductTypeName == SelectedProductType);
         }
+
+        /* применяем сортировку. если совпадений в свиче нет - возвращаем список без сортировки, иначе сортируем*/
+        filteredProducts = SelectedSortOption switch
+        {
+            "Стоимость по возрастанию" => filteredProducts.OrderBy(p => p.MinCostPartner),
+            "Стоимость по убыванию" => filteredProducts.OrderByDescending(p => p.MinCostPartner),
+            _ => filteredProducts
+        };
         
         ProductCardItems.Clear();
         
@@ -208,6 +234,14 @@ public partial class MainWindowViewModel : ViewModelBase
             }
 
             SelectedProductType = "Все типы";
+            
+            SortOption.Clear();
+            SortOption.Add("Без сортировки");
+            SortOption.Add("Стоимость по возрастанию");
+            SortOption.Add("Стоимость по убыванию");
+
+            SelectedSortOption = "Без сортировки";
+            
             UpdateProductList();
             
             // /* заполняем ДТО данными из полной модели продуктов */
