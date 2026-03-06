@@ -279,4 +279,9 @@ public partial class MainWindowViewModel : ViewModelBase
             Console.WriteLine(ex.Message);
         }
     }
+
+    public async Task ReloadProductsAsync()
+    {
+        await LoadProductsAsync();
+    }
 }

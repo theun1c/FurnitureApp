@@ -7,7 +7,7 @@
         x:Class="FurnitureApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="FurnitureApp"
+        Title="Вывод товара"
         xmlns:comp="using:FurnitureApp.Views.Components"
         xmlns:dto="using:FurnitureApp.DTOs">
     <!--суда тоже подключаем компоненты и ДТО-->
@@ -30,6 +30,11 @@
                 <ComboBox ItemsSource="{Binding SortOption}"
                           SelectedItem="{Binding SelectedSortOption}"
                           Width="250"/>
+                
+                <Button Content="Добавить" 
+                        Background="#355CBD" 
+                        Foreground="#FFFFFF"
+                        Click="OpenAddProductWindow_OnClick"/>
             </StackPanel>
         
             <Grid Grid.Row="1">
