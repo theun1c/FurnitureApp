@@ -284,4 +284,23 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         await LoadProductsAsync();
     }
+
+    public async Task DeleteProductAsync(int productId)
+    {
+        var options = new DbContextOptionsBuilder<_41pProductsContext>()
+            .UseNpgsql("Host=edu.ngknn.ru;Port=5442;Database=41P_products;Username=21P;Password=123")
+            .Options;
+        
+        await using var context = new _41pProductsContext(options);
+        
+        var product = await context.Products.FirstOrDefaultAsync(p => p.Id == productId);
+        
+        if (product is null)
+            return;
+        
+        context.Products.Remove(product);
+        await context.SaveChangesAsync();
+        
+        await ReloadProductsAsync();
+    }
 }

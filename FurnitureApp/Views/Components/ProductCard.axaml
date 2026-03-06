@@ -27,19 +27,21 @@
             </Grid>
             
             <StackPanel>
-                <TextBlock Text="{Binding ArticleText}" 
-                           Foreground="#355CBD"
-                           FontSize="18"
-                           FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding CostText}" 
-                           Foreground="#355CBD"
-                           FontSize="18"
-                           FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding MaterialText}" 
-                           Foreground="#355CBD"
-                           FontSize="18"
-                           FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding ArticleText}" 
+                                   Foreground="#355CBD"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding CostText}" 
+                                   Foreground="#355CBD"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"/>
+                        <TextBlock Text="{Binding MaterialText}" 
+                                   Foreground="#355CBD"
+                                   FontSize="18"
+                                   FontWeight="SemiBold"/>
+                
             </StackPanel>
+            
         </StackPanel>
     </Border>
     

@@ -1,5 +1,6 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using FurnitureApp.DTOs;
 using FurnitureApp.ViewModels;
 
 namespace FurnitureApp.Views;
@@ -27,5 +28,19 @@ public partial class MainWindow : Window
         {
             await mainWindowViewModel.ReloadProductsAsync();
         }
+    }
+
+    private async void DeleteProduct_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button)
+            return;
+        
+        if(button.Tag is not ProductCardItem product)
+            return;
+        
+        if (DataContext is not MainWindowViewModel viewModel)
+            return;
+        
+        await viewModel.DeleteProductAsync(product.Id);
     }
 }
