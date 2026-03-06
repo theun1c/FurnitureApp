@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FurnitureApp.Views.Components.ProductCard"
+             xmlns:dto="using:FurnitureApp.DTOs" 
+             x:DataType="dto:ProductCardItem">
+    <!--добавляем возможность использования ДТО, подключая ДТО, а потом использовав его внутри datatype-->
+    
+    <Border Padding="16"
+            Background="#D2DFFF"
+            BorderBrush="#355CBD"
+            BorderThickness="2">
+        <StackPanel >
+            <Grid ColumnDefinitions="*, Auto">
+                <TextBlock Grid.Column="0" Text="{Binding Title}" 
+                           Foreground="#355CBD" 
+                           FontWeight="Bold" 
+                           FontSize="24"/>
+                
+                <TextBlock Grid.Column="1" 
+                           Text="{Binding ProductionTimeText}" 
+                           Foreground="#355CBD"  
+                           FontWeight="Bold" 
+                           FontSize="18"/>
+            </Grid>
+            
+            <StackPanel>
+                <TextBlock Text="{Binding ArticleText}" 
+                           Foreground="#355CBD"
+                           FontSize="18"
+                           FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding CostText}" 
+                           Foreground="#355CBD"
+                           FontSize="18"
+                           FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding MaterialText}" 
+                           Foreground="#355CBD"
+                           FontSize="18"
+                           FontWeight="SemiBold"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+    
+</UserControl>

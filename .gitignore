@@ -1,0 +1,5 @@
+# simple gitignore 
+.idea/
+.vs/
+bin/
+obj/
