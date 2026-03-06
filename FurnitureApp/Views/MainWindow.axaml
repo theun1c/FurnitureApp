@@ -49,7 +49,7 @@
                         <ItemsControl.ItemTemplate>
                             <!--получаем данные из ДТО и передаем его в компонент карточки -->
                             <DataTemplate x:DataType="dto:ProductCardItem">
-                                <StackPanel >
+                                <Grid >
                                     <comp:ProductCard Margin="10"/>
                                 
                                     <Button Content="Удалить" 
@@ -57,9 +57,10 @@
                                             Foreground="White"
                                             Tag="{Binding}"
                                             Click="DeleteProduct_OnClick"
-                                            Margin="0, 0, 10, 20"
-                                            HorizontalAlignment="Right"/>
-                                </StackPanel>
+                                            Margin="0, 0, 30, 30"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"/>
+                                </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
