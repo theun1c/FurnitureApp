@@ -32,17 +32,24 @@
                           Width="250"/>
             </StackPanel>
         
-            <ScrollViewer Grid.Row="1">
-                <!-- берем из вью модела MainWindowViewModel, там есть пропс под итем-->
-                <ItemsControl ItemsSource="{Binding ProductCardItems}">
-                    <ItemsControl.ItemTemplate>
-                        <!--получаем данные из ДТО и передаем его в компонент карточки -->
-                        <DataTemplate x:DataType="dto:ProductCardItem">
-                            <comp:ProductCard Margin="10"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
+            <Grid Grid.Row="1">
+                <TextBlock Text="Ничего не найдено"
+                           IsVisible="{Binding IsEmpty}"
+                           FontSize="16"
+                           Foreground="Red"
+                           Padding="12"/>
+                <ScrollViewer>
+                    <!-- берем из вью модела MainWindowViewModel, там есть пропс под итем-->
+                    <ItemsControl ItemsSource="{Binding ProductCardItems}">
+                        <ItemsControl.ItemTemplate>
+                            <!--получаем данные из ДТО и передаем его в компонент карточки -->
+                            <DataTemplate x:DataType="dto:ProductCardItem">
+                                <comp:ProductCard Margin="10"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
             
         </Grid>
 

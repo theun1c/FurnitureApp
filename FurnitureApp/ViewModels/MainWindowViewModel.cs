@@ -12,12 +12,15 @@ namespace FurnitureApp.ViewModels;
 /* именно эта вью модел является дата контекстом main window , а значит данные берутся от суда */
 public partial class MainWindowViewModel : ViewModelBase
 {
+    
     /* коллекция карточек в главном вью модел. это типо ДТО.
      обсервабл коллекшн, потому что она уведомляет интерфейс и изменения автоматом появляются*/
     /*обсервабл коллекшн видит каждое изменение продукт кард айтем, поэтому нигде нет возвратов,
      стоит просто подключить это свойство к вью и вью будет обновляться вместо с свойством в ИРЛ*/
     public ObservableCollection<ProductCardItem> ProductCardItems { get; } = new();
 
+    public bool IsEmpty => ProductCardItems.Count == 0;
+    
     /* этот обсервабл коллекшн нужен для комбо бокса списков. важно чтобы список работал с ЮАЙ */
     public ObservableCollection<string> ProductTypes { get; } = new();
 
@@ -134,6 +137,9 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             ProductCardItems.Add(product);
         }
+        
+        OnPropertyChanged(nameof(IsEmpty));
+        
     }
     
     /* конструктор с вызовом метода загрузки карточек */
