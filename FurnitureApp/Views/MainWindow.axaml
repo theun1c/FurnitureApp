@@ -60,6 +60,15 @@
                                             Margin="0, 0, 30, 30"
                                             HorizontalAlignment="Right"
                                             VerticalAlignment="Bottom"/>
+                                    
+                                    <Button Content="Редактировать" 
+                                            Background="#355CBD" 
+                                            Foreground="White"
+                                            Tag="{Binding}"
+                                            Click="EditProduct_OnClick"
+                                            Margin="0, 0, 110, 30"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

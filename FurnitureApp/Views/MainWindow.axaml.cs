@@ -43,4 +43,28 @@ public partial class MainWindow : Window
         
         await viewModel.DeleteProductAsync(product.Id);
     }
+
+    private async void EditProduct_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if(sender is not Button button)
+            return;
+        
+        if (button.Tag is not ProductCardItem product)
+            return;
+        
+        var editProductViewModel = new EditProductWindowViewModel(product.Id);
+        await editProductViewModel.LoadDataAsync();
+
+        var editProductWindow = new EditProductWindow
+        {
+            DataContext = editProductViewModel
+        };
+        
+        await editProductWindow.ShowDialog(this);
+
+        if (editProductWindow.IsSaved && DataContext is MainWindowViewModel mainWindowViewModel)
+        {
+            await mainWindowViewModel.ReloadProductsAsync();
+        }
+    }
 }
